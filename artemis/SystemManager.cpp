@@ -56,7 +56,6 @@ namespace artemis {
         stm->setSystemBit(SystemBitManager::getBitFor(typeid(*stm)));
       }
     }
-    
     return stm;
   }
   

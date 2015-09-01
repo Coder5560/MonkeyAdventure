@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "network/HttpRequest.h"
 #include "network/HttpClient.h"
+#include "ui/UIImageView.h"
 USING_NS_CC;
 namespace R{
 
@@ -10,6 +11,7 @@ namespace R{
 
 	public :
 		static void checkNetwork(const std::function<void(bool hasNetwork)> &callback);
+		static ui::ImageView* createImageButton(std::string patch,const std::function<void()> &callback);
 		static void loadGameVariable();
 		static void resetGameVariable();
 		static void updateGameVariable();
@@ -30,6 +32,10 @@ namespace R{
 	};
 	enum class CharacterType{
 		MONKEY, NONAME
+	};
+	enum class MatchType{
+		MONKEY_RHINO,MONKEY_BEAR
+
 	};
 };
 

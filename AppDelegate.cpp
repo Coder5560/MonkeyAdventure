@@ -1,15 +1,11 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "renders/FlashScene.h"
 
 USING_NS_CC;
 
-AppDelegate::AppDelegate() {
+AppDelegate::AppDelegate() {}
 
-}
-
-AppDelegate::~AppDelegate() 
-{
-}
+AppDelegate::~AppDelegate() {}
 
 void AppDelegate::initGLContextAttrs()
 {
@@ -48,12 +44,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	director->getOpenGLView()->setDesignResolutionSize(480, 800, ResolutionPolicy::FIXED_HEIGHT);
     register_all_packages();
 
-    auto scene = HelloWorld::createScene();
-
-
-    director->runWithScene(scene);
-
-
+    auto scene = FlashScene::createScene();
+	director->runWithScene(scene);
     return true;
 }
 

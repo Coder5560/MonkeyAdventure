@@ -18,7 +18,5 @@ public:
 	float _timeTouch;
 	float _isTouch;
 	float _hasPan;
-
-
 };
 

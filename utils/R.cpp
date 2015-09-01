@@ -40,7 +40,7 @@ void R::Utils::checkNetwork(const std::function<void(bool hasNetwork)> &callback
 		{
 			// No internet connection
 			cocos2d::log("No internet connection");
-			if(callback)callback(false);
+			if (callback)callback(false);
 		}
 		else
 		{
@@ -52,4 +52,23 @@ void R::Utils::checkNetwork(const std::function<void(bool hasNetwork)> &callback
 
 	network::HttpClient::getInstance()->sendImmediate(request);
 	request->release();
+}
+
+ui::ImageView* R::Utils::createImageButton(std::string patch, const std::function<void()> &callback){
+	ui::ImageView* imageButton = ui::ImageView::create(patch, ui::ImageView::TextureResType::LOCAL);
+	imageButton->setScale9Enabled(true);
+	imageButton->setTouchEnabled(true);
+	imageButton->addClickEventListener([=](Ref* sender){
+		imageButton->setTouchEnabled(false);
+		float scale = imageButton->getScale();
+		ScaleTo* scaleIn = ScaleTo::create(.1f, scale);
+		ScaleTo* scaleout = ScaleTo::create(.1f, scale - .04f);
+		CallFunc* _call = CallFunc::create([=]() {
+			imageButton->setTouchEnabled(true);
+			if (callback) callback();
+		});
+		imageButton->runAction(
+			Sequence::create(scaleIn, scaleout, _call, nullptr));
+	});
+	return imageButton;
 }

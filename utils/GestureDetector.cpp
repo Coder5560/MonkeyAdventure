@@ -14,6 +14,8 @@ GestureDetector::GestureDetector()
 	};
 	listener->onTouchMoved = [=](Touch* touch, Event* event){
 		log("touch moved");
+
+
 	};
 	listener->onTouchCancelled = [=](Touch* touch, Event* event){
 		log("touch cancel");
@@ -21,7 +23,6 @@ GestureDetector::GestureDetector()
 	listener->onTouchEnded = [=](Touch* touch, Event* event){
 		log("touch end");
 	};
-	this->setSwallowsTouches(true);
 
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener,this);
 

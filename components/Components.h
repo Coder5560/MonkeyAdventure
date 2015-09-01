@@ -6,6 +6,7 @@ USING_NS_CC;
 
 class PositionComponent;
 class PhysicComponent;
+class AccelerateComponent;
 class GravityComponent;
 class MapSensorComponent;
 class BoundComponent;
@@ -22,24 +23,38 @@ public:
 
 class PhysicComponent : public artemis::Component{
 public:
-	PhysicComponent(Vec2 velocity, Vec2 acceleration);
+	PhysicComponent(Vec2 velocity);
 	Vec2 velocity;
-	Vec2 acceleration;
 	float bounce;
 	float friction;
 };
+class AccelerateComponent : public artemis::Component{
+public:
+	AccelerateComponent(Vec2 acceleration);
+	Vec2 acceleration;
+};
+
 
 class GravityComponent : public artemis::Component{
 public :
 	GravityComponent(float gravity);
 	bool enable;
-	float gravity;
+	float gravityY;
+	float gravityX;
 };
 
 class MapSensorComponent : public artemis::Component{
 public :
 	MapSensorComponent();
-	bool onMap;
+	bool onMapDown;
+	bool onMapLeft;
+	bool onMapUp;
+	bool onMapRight;
+
+	float _up;
+	float _down;
+	float _right;
+	float _left;
 };
 
 class BoundComponent : public artemis::Component{
